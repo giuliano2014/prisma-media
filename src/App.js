@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import './assets/styles/reset.css';
+import './assets/styles/styles.css';
+
 import Header from './header/Header';
 import TopTen from './topten/TopTen';
 import Movies from './movies/Movies';
