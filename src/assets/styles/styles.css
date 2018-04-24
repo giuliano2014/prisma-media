@@ -1,0 +1,10 @@
+body {
+  background-color: #0d1d37;
+  padding: 50px;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 20px;
+  }
+}
