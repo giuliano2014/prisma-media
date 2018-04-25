@@ -1,0 +1,155 @@
+.filter {
+  display: flex;
+  margin-bottom: 30px;
+}
+  .dropdownarrow-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+  .filter-by ul.active .dropdownarrow-icon {
+    transform: rotate(180deg);
+  }
+  .sort-by {
+    margin-right: 50px;
+  }
+  .filter-by {
+    display: flex;
+  }
+    .wrapper-button-sort-by {
+      position: relative;
+      display: inline-table;
+    }
+    .sort-by label,
+    .filter-by label {
+      margin-right: 10px;
+    }
+    .sort-by button,
+    .filter-by button,
+    .filter-by li,
+    .rdt input:first-child {
+      background-color: transparent;
+      color: #586e97;
+      width: 195px;
+      text-align: left;
+      font-size: 14px;
+      padding: 13px 20px;
+      border: 1px solid #586e97;
+      border-radius: 15px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+  .filter-by label {
+    padding-top: 15px;
+  }
+  .filter-by ul {
+    position: relative;
+    margin-right: 10px;
+  }
+    .filter-by button,
+    .filter-by li,
+    .rdt input:first-child {
+      width: 140px;
+    }
+    .filter-by li {
+      display: none;
+      background-color: #263755;
+      border-radius: 0;
+      border-top: none;
+    }
+    .filter-by li:last-child {
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+    .filter-by ul.active button {
+      background-color: #263755;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .filter-by ul.active li {
+      display: block;
+    }
+
+/* Override react-datetime */
+.rdtPicker {
+  background-color: #263755;
+  right: 0;
+  padding: 20px 15px 0;
+  margin-top: 15px;
+  border-radius: 15px;
+  border: none;
+}
+  .rdtPicker table:first-child {
+    margin-bottom: 30px;
+  }
+    .rdtPicker th {
+      border: none;
+    }
+    .rdtSwitch {
+      vertical-align: middle;
+    }
+    .rdtPicker thead tr:first-child th:hover,
+    .rdtPicker td.rdtActive,
+    .rdtPicker td.rdtActive:hover,
+    td.rdtMonth:hover,
+    td.rdtYear:hover {
+      background: transparent;
+    }
+
+/* .datepicker-wrapper {
+  position: relative;
+}
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid #263755;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+} */
+
+@media (max-width: 850px) {
+  .sort-by {
+    margin-right: 25px;
+  }
+    .filter-by button,
+    .filter-by li,
+    .rdt input:first-child {
+      width: 100px;
+    }
+}
+
+@media (max-width: 640px) {
+  .filter {
+    flex-direction: column;
+  }
+    .sort-by {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+      .filter-by button,
+      .filter-by li,
+      .rdt input:first-child {
+        width: 140px;
+      }
+}
+
+@media (max-width: 400px) {
+  .filter-by button,
+  .filter-by li,
+  .rdt input:first-child {
+    width: 120px;
+  }
+}
+
+@media (max-width: 350px) {
+  .filter-by button,
+  .filter-by li,
+  .rdt input:first-child {
+    width: 90px;
+  }
+}
