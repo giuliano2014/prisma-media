@@ -56,13 +56,17 @@
 @media (max-width: 640px) {
   .topten {
     padding-right: 0;
+    margin-bottom: 30px;
   }
-    .swiper-slide {
-      width: 90px !important;
-      margin-right: 20px !important;
+    .swiper-wrapper {
+      padding-bottom: 30px;
     }
-    .button-prev,
-    .button-next {
-      display: none;
-    }
+      .swiper-slide {
+        width: 90px !important;
+        margin-right: 20px !important;
+      }
+      .button-prev,
+      .button-next {
+        display: none;
+      }
 }
