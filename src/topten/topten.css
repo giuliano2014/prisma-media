@@ -55,7 +55,7 @@
 
 @media (max-width: 640px) {
   .topten {
-    padding-left: 20px;
+    padding-right: 0;
   }
     .swiper-slide {
       width: 90px !important;
