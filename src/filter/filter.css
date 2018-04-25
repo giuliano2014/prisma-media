@@ -5,6 +5,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    cursor: pointer;
   }
   .filter-by ul.active .dropdownarrow-icon {
     transform: rotate(180deg);
@@ -25,7 +26,8 @@
     }
     .sort-by button,
     .filter-by button,
-    .filter-by li {
+    .filter-by li,
+    .rdt input:first-child {
       background-color: transparent;
       color: #586e97;
       width: 195px;
@@ -42,9 +44,11 @@
   }
   .filter-by ul {
     position: relative;
+    margin-right: 10px;
   }
     .filter-by button,
-    .filter-by li {
+    .filter-by li,
+    .rdt input:first-child {
       width: 140px;
     }
     .filter-by li {
@@ -66,11 +70,72 @@
       display: block;
     }
 
+/* Override react-datetime */
+.rdt input:first-child {
+  margin-bottom: 15px;
+}
+.rdtPicker {
+  background-color: #263755;
+  right: 0;
+  padding: 20px 15px 0;
+  margin-top: 0;
+  border-radius: 15px;
+  border: none;
+}
+  .rdtPicker table:first-child {
+    margin-bottom: 30px;
+  }
+    .rdtPicker th {
+      border: none;
+    }
+    .rdtSwitch {
+      vertical-align: middle;
+    }
+    .rdtPicker thead tr:first-child th:hover,
+    .rdtPicker td.rdtActive,
+    .rdtPicker td.rdtActive:hover,
+    td.rdtMonth:hover,
+    td.rdtYear:hover {
+      background: transparent;
+    }
+
+/* .datepicker-wrapper {
+  position: relative;
+}
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid #263755;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+} */
+
+@media (max-width: 850px) {
+  .sort-by {
+    margin-right: 25px;
+  }
+    .filter-by button,
+    .filter-by li,
+    .rdt input:first-child {
+      width: 100px;
+    }
+}
+
 @media (max-width: 640px) {
   .filter {
     flex-direction: column;
   }
     .sort-by {
+      margin-right: 0;
       margin-bottom: 20px;
     }
+      .filter-by button,
+      .filter-by li,
+      .rdt input:first-child {
+        width: 140px;
+      }
 }
