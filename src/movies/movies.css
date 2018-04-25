@@ -1,3 +1,11 @@
-.movies-test {
-  color: blue;
+.movies {
+  max-width: 1024px;
+  margin: 0 auto 80px; /* ??? */
+}
+
+@media (max-width: 1050px) {
+  .movies {
+    padding: 20px 20px 0;
+    box-sizing: border-box;
+  }
 }
