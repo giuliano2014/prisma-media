@@ -1,7 +1,7 @@
 .header {
   max-width: 1024px;
   padding-top: 30px;
-  margin: 0 auto 70px auto;
+  margin: 0 auto 70px;
   display: flex;
   justify-content: space-between;
 }
@@ -28,7 +28,7 @@
 
 @media (max-width: 1050px) {
   .header {
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 0;
     box-sizing: border-box;
   }
 }
