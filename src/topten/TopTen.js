@@ -5,6 +5,7 @@ import 'swiper/dist/css/swiper.min.css';
 import './topten.css';
 import SliderPreviousArrow from '../assets/svg/sliderpreviousarrow.svg';
 import SliderNextArrow from '../assets/svg/slidernextarrow.svg';
+import Loading from '../loading/Loading';
 
 export default class TopTen extends Component {
 
@@ -47,6 +48,8 @@ export default class TopTen extends Component {
 
   render() {
 
+    const loading = this.state.loading;
+
     const params = {
       slidesPerView: 4,
       spaceBetween: 80,
@@ -75,10 +78,8 @@ export default class TopTen extends Component {
     return (
       <div className="topten">
         <h2 className="title">Les 10 meilleurs films</h2>
-        {this.state.loading ? (
-          <p align="center">
-            Loading...
-          </p>
+        {loading ? (
+          <Loading loading={loading} />
         ) : (
           <div>
             <Swiper
