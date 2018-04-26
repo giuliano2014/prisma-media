@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './movies.css';
 import Filter from '../filter/Filter';
+import Loading from '../loading/Loading';
 
 export default class Movies extends Component {
 
@@ -32,6 +33,7 @@ export default class Movies extends Component {
 
   render() {
 
+    const loading = this.state.loading;
     const data = this.state.data;
 
     const items = data.map(item => {
@@ -53,10 +55,8 @@ export default class Movies extends Component {
       <div className="movies">
         <h2 className="title">Tous les films</h2>
         <Filter />
-        {this.state.loading ? (
-          <p align="center">
-            Loading...
-          </p>
+        {loading ? (
+          <Loading loading={loading} />
         ) : (
           <ul className="wrapper-all-movies">
             {items}
