@@ -64,7 +64,7 @@ export default class TopTen extends Component {
 
       return (
         <div key={item.id}>
-          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt={item.title} />
+          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt={title} />
           <h3 className="movie-title">{formatTitle}</h3>
           <p className="movie-date">{date}</p>
         </div>

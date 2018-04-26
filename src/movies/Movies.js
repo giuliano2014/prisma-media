@@ -35,13 +35,18 @@ export default class Movies extends Component {
     const data = this.state.data;
 
     const items = data.map(item => {
+
+      let title = item.title;
+      let date = item.release_date.split('-')[0];
+
       return (
         <li key={item.id}>
-          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt={item.title} />
-          <h3 className="movie-title">{item.title}</h3>
-          <p className="movie-date">{item.release_date.split('-')[0]}</p>
+          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt={title} />
+          <h3 className="movie-title">{title}</h3>
+          <p className="movie-date">{date}</p>
         </li>
       );
+
     });
 
     return (
