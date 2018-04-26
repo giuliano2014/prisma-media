@@ -19,7 +19,6 @@ export default class Movies extends Component {
   }
 
   getMovies = () => {
-
     fetch('https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc')
       .then(res => res.json())
       .then(res => {
@@ -29,7 +28,6 @@ export default class Movies extends Component {
         });
       })
       .catch(err => console.log('Request failed', err));
-
   }
 
   render() {
@@ -39,7 +37,7 @@ export default class Movies extends Component {
     const items = data.map(item => {
       return (
         <li key={item.id}>
-          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt="" />
+          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt={item.title} />
           <h3 className="movie-title">{item.title}</h3>
           <p className="movie-date">{item.release_date.split('-')[0]}</p>
         </li>

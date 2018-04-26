@@ -34,7 +34,6 @@ export default class TopTen extends Component {
   }
 
   getTopTen = () => {
-
     fetch('https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&certification=R&sort_by=vote_average.desc')
       .then(res => res.json())
       .then(res => {
@@ -44,7 +43,6 @@ export default class TopTen extends Component {
         });
       })
       .catch(err => console.log('Request failed', err));
-
   }
 
   render() {
@@ -66,7 +64,7 @@ export default class TopTen extends Component {
 
       return (
         <div key={item.id}>
-          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt="" />
+          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt={item.title} />
           <h3 className="movie-title">{formatTitle}</h3>
           <p className="movie-date">{date}</p>
         </div>
