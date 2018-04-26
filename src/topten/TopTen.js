@@ -11,9 +11,18 @@ export default class TopTen extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      loading: true,
+      data: [],
+    }
+
     this.goNext = this.goNext.bind(this);
     this.goPrev = this.goPrev.bind(this);
     this.swiper = null;
+  }
+
+  componentDidMount() {
+    this.getTopTen();
   }
 
   goNext = () => {
@@ -22,6 +31,20 @@ export default class TopTen extends Component {
 
   goPrev = () => {
     if (this.swiper) this.swiper.slidePrev();
+  }
+
+  getTopTen = () => {
+
+    fetch('https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&certification=R&sort_by=vote_average.desc')
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          loading: false,
+          data: res.results,
+        });
+      })
+      .catch(err => console.log('Request failed', err));
+
   }
 
   render() {
@@ -33,76 +56,53 @@ export default class TopTen extends Component {
       grabCursor: true,
     };
 
+    const data = this.state.data.slice(0, 10);
+
+    const items = data.map(item => {
+
+      let title = item.title;
+      let formatTitle = title.length > 30 ? title.substr(0, 30) + '...' : title;
+      let date = item.release_date.split('-')[0];
+
+      return (
+        <div key={item.id}>
+          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt="" />
+          <h3 className="movie-title">{formatTitle}</h3>
+          <p className="movie-date">{date}</p>
+        </div>
+      );
+
+    });
+
     return (
       <div className="topten">
         <h2 className="title">Les 10 meilleurs films</h2>
-        <Swiper
-          {...params}
-          ref={node => {if(node) this.swiper = node.swiper}}
-        >
+        {this.state.loading ? (
+          <p align="center">
+            Loading...
+          </p>
+        ) : (
           <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 1</h3>
-            <p className="movie-date">Date</p>
+            <Swiper
+              {...params}
+              ref={node => {if(node) this.swiper = node.swiper}}
+            >
+              {items}
+            </Swiper>
+            <span className="button-prev" onClick={this.goPrev}>
+              <img
+                src={SliderPreviousArrow}
+                alt="Précédent"
+              />
+            </span>
+            <span className="button-next" onClick={this.goNext}>
+              <img
+                src={SliderNextArrow}
+                alt="Suivant"
+              />
+            </span>
           </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 2</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 3</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 4</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 5</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 6</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 7</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 8</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 9</h3>
-            <p className="movie-date">Date</p>
-          </div>
-          <div>
-            <img src="https://picsum.photos/140/200" alt="" />
-            <h3 className="movie-title">Title 10</h3>
-            <p className="movie-date">Date</p>
-          </div>
-        </Swiper>
-        <span className="button-prev" onClick={this.goPrev}>
-          <img
-            src={SliderPreviousArrow}
-            alt="Précédent"
-          />
-        </span>
-        <span className="button-next" onClick={this.goNext}>
-          <img
-            src={SliderNextArrow}
-            alt="Suivant"
-          />
-        </span>
+        )}
       </div>
     );
 
