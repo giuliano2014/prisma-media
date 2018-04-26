@@ -18,6 +18,9 @@
           margin-bottom: 12px;
           border-radius: 12px;
         }
+        .movie-title {
+          margin-bottom: 10px;
+        }
         .movie-date {
           color: #556b92;
         }
