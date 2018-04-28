@@ -13,10 +13,17 @@ export default class Movies extends Component {
       loading: true,
       data: [],
     }
+
+    this.sortByAlphabetical = this.sortByAlphabetical.bind(this);
   }
 
   componentDidMount() {
     this.getMovies();
+  }
+
+  sortByAlphabetical = () => {
+    const alphabeticalOrder = this.state.data.sort((a, b) => a.title.localeCompare(b.title));
+    this.setState({data: alphabeticalOrder});
   }
 
   getMovies = () => {
@@ -54,7 +61,7 @@ export default class Movies extends Component {
     return (
       <div className="movies">
         <h2 className="title">Tous les films</h2>
-        <Filter />
+        <Filter sortByAlphabetical={this.sortByAlphabetical} />
         {loading ? (
           <Loading loading={loading} />
         ) : (
