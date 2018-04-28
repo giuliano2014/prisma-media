@@ -11,13 +11,14 @@ export default class Filter extends Component {
     super(props);
 
     this.state = {
+      sortByAlphabetical: this.props.sortByAlphabetical,
       active: false,
       filterByCurrentText: 'Genre',
     };
 
     this.toggleActiveClass = this.toggleActiveClass.bind(this);
   }
-
+  
   toggleActiveClass = (event) => {
     const currentValue = event.target.textContent || event.target.getAttribute('current-value');
     this.setState({
@@ -34,7 +35,10 @@ export default class Filter extends Component {
 
         <div className="sort-by">
           <label>Trier par : </label>
-          <span className="wrapper-button-sort-by">
+          <span
+            onClick={this.state.sortByAlphabetical}
+            className="wrapper-button-sort-by"
+          >
             <button>Ordre alphabétique</button>
             <img
               className="dropdownarrow-icon"
