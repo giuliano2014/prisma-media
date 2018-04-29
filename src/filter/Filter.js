@@ -12,13 +12,14 @@ export default class Filter extends Component {
 
     this.state = {
       sortByAlphabetical: this.props.sortByAlphabetical,
+      filterByYear: this.props.filterByYear,
       active: false,
       filterByCurrentText: 'Genre',
     };
 
     this.toggleActiveClass = this.toggleActiveClass.bind(this);
   }
-  
+
   toggleActiveClass = (event) => {
     const currentValue = event.target.textContent || event.target.getAttribute('current-value');
     this.setState({
@@ -67,8 +68,11 @@ export default class Filter extends Component {
             <li onClick={this.toggleActiveClass}>Amour</li>
           </ul>
           <Datetime
+            onChange={(e) => this.state.filterByYear(e._d)}
             dateFormat="YYYY"
+            timeFormat={false}
             defaultValue="Année"
+            closeOnSelect={true}
           />
           {/* <div className="datepicker-wrapper">
             <div className="arrow-up"></div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'moment';
 
 import './movies.css';
 import Filter from '../filter/Filter';
@@ -15,10 +16,11 @@ export default class Movies extends Component {
     }
 
     this.sortByAlphabetical = this.sortByAlphabetical.bind(this);
+    this.filterByYear = this.filterByYear.bind(this);
   }
 
   componentDidMount() {
-    this.getMovies();
+    this.displayMovies();
   }
 
   sortByAlphabetical = () => {
@@ -27,13 +29,31 @@ export default class Movies extends Component {
   }
 
   getMovies = () => {
-    fetch('https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc')
-      .then(res => res.json())
+    return (
+      fetch('https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc')
+        .then(res => res.json())
+        .then(res => res.results)
+    );
+  }
+
+  displayMovies = () => {
+    this.getMovies()
       .then(res => {
         this.setState({
           loading: false,
-          data: res.results,
+          data: res,
         });
+      })
+      .catch(err => console.log('Request failed', err));
+  }
+
+  filterByYear = (date) => {
+    this.getMovies()
+    .then(res => {
+        let data = res.filter(item => {
+          return item.release_date.split('-')[0] === Moment(date).format('YYYY');
+        });
+        this.setState({data: data});
       })
       .catch(err => console.log('Request failed', err));
   }
@@ -61,7 +81,10 @@ export default class Movies extends Component {
     return (
       <div className="movies">
         <h2 className="title">Tous les films</h2>
-        <Filter sortByAlphabetical={this.sortByAlphabetical} />
+        <Filter
+          sortByAlphabetical={this.sortByAlphabetical}
+          filterByYear={this.filterByYear}
+        />
         {loading ? (
           <Loading loading={loading} />
         ) : (
