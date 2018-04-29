@@ -17,59 +17,62 @@
   .filter-by {
     display: flex;
   }
-    .wrapper-button-sort-by {
-      position: relative;
-      display: inline-table;
+    .filter-by-wrapper {
+      position: absolute;
     }
-    .sort-by label,
-    .filter-by label {
-      margin-right: 10px;
-    }
-    .sort-by button,
-    .filter-by button,
-    .filter-by li,
-    .rdt input:first-child {
-      background-color: transparent;
-      color: #586e97;
-      width: 195px;
-      text-align: left;
-      font-size: 14px;
-      padding: 13px 20px;
-      border: 1px solid #586e97;
-      border-radius: 15px;
-      box-sizing: border-box;
-      cursor: pointer;
-    }
-  .filter-by label {
-    padding-top: 15px;
-  }
-  .filter-by ul {
-    position: relative;
-    margin-right: 10px;
-  }
-    .filter-by button,
-    .filter-by li,
-    .rdt input:first-child {
-      width: 140px;
-    }
-    .filter-by li {
-      display: none;
-      background-color: #263755;
-      border-radius: 0;
-      border-top: none;
-    }
-    .filter-by li:last-child {
-      border-bottom-left-radius: 15px;
-      border-bottom-right-radius: 15px;
-    }
-    .filter-by ul.active button {
-      background-color: #263755;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    .filter-by ul.active li {
-      display: block;
-    }
+      .filter-by label {
+        padding-top: 15px;
+      }
+      .filter-by ul {
+        position: relative;
+        margin-right: 150px;
+      }
+        .wrapper-button-sort-by {
+          position: relative;
+          display: inline-table;
+        }
+        .sort-by label,
+        .filter-by label {
+          margin-right: 10px;
+        }
+        .sort-by button,
+        .filter-by button,
+        .filter-by li,
+        .rdt input:first-child {
+          background-color: transparent;
+          color: #586e97;
+          width: 195px;
+          text-align: left;
+          font-size: 14px;
+          padding: 13px 20px;
+          border: 1px solid #586e97;
+          border-radius: 15px;
+          box-sizing: border-box;
+          cursor: pointer;
+        }
+        .filter-by button,
+        .filter-by li,
+        .rdt input:first-child {
+          width: 140px;
+        }
+        .filter-by li {
+          display: none;
+          background-color: #263755;
+          border-radius: 0;
+          border-top: none;
+        }
+        .filter-by li:last-child {
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 15px;
+        }
+        .filter-by ul.active button {
+          background-color: #263755;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        .filter-by ul.active li {
+          display: block;
+        }
 
 /* Override react-datetime */
 .rdtPicker {
@@ -116,11 +119,14 @@
   .sort-by {
     margin-right: 25px;
   }
-    .filter-by button,
-    .filter-by li,
-    .rdt input:first-child {
-      width: 100px;
+    .filter-by ul {
+      margin-right: 110px;
     }
+      .filter-by button,
+      .filter-by li,
+      .rdt input:first-child {
+        width: 100px;
+      }
 }
 
 @media (max-width: 640px) {
@@ -131,25 +137,34 @@
       margin-right: 0;
       margin-bottom: 20px;
     }
-      .filter-by button,
-      .filter-by li,
-      .rdt input:first-child {
-        width: 140px;
+      .filter-by ul {
+        margin-right: 150px;
       }
+        .filter-by button,
+        .filter-by li,
+        .rdt input:first-child {
+          width: 140px;
+        }
 }
 
 @media (max-width: 400px) {
-  .filter-by button,
-  .filter-by li,
-  .rdt input:first-child {
-    width: 120px;
+  .filter-by ul {
+    margin-right: 130px;
   }
+    .filter-by button,
+    .filter-by li,
+    .rdt input:first-child {
+      width: 120px;
+    }
 }
 
 @media (max-width: 350px) {
-  .filter-by button,
-  .filter-by li,
-  .rdt input:first-child {
-    width: 90px;
+  .filter-by ul {
+    margin-right: 100px;
   }
+    .filter-by button,
+    .filter-by li,
+    .rdt input:first-child {
+      width: 90px;
+    }
 }

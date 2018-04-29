@@ -63,6 +63,8 @@ export default class Movies extends Component {
     const loading = this.state.loading;
     const data = this.state.data;
 
+    console.log(data);
+
     const items = data.map(item => {
 
       let title = item.title;
@@ -88,9 +90,13 @@ export default class Movies extends Component {
         {loading ? (
           <Loading loading={loading} />
         ) : (
-          <ul className="wrapper-all-movies">
-            {items}
-          </ul>
+          items.length > 0 ? (
+            <ul className="wrapper-all-movies">
+              {items}
+            </ul>
+          ) : (
+            <p className="error-message">Oops... Aucun film ne correspond à votre recherche</p>
+          )
         )}
       </div>
     );
