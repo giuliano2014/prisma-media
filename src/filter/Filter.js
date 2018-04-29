@@ -52,20 +52,22 @@ export default class Filter extends Component {
         <div className="filter-by">
           <label>Filtrer par : </label>
           <ul className={this.state.active ? 'active' : null}>
-            <button onClick={this.toggleActiveClass}>
-              {this.state.filterByCurrentText}
-              <img
-                onClick={this.toggleActiveClass}
-                className="dropdownarrow-icon"
-                src={DropDownArrowIcon}
-                alt="Filtrer par genre"
-                current-value={this.state.filterByCurrentText}
-              />
-            </button>
-            <li onClick={this.toggleActiveClass}>Tous</li>
-            <li onClick={this.toggleActiveClass}>Action</li>
-            <li onClick={this.toggleActiveClass}>Horreur</li>
-            <li onClick={this.toggleActiveClass}>Amour</li>
+            <div className="filter-by-wrapper">
+              <button onClick={this.toggleActiveClass}>
+                {this.state.filterByCurrentText}
+                <img
+                  onClick={this.toggleActiveClass}
+                  className="dropdownarrow-icon"
+                  src={DropDownArrowIcon}
+                  alt="Filtrer par genre"
+                  current-value={this.state.filterByCurrentText}
+                />
+              </button>
+              <li onClick={this.toggleActiveClass}>Tous</li>
+              <li onClick={this.toggleActiveClass}>Action</li>
+              <li onClick={this.toggleActiveClass}>Horreur</li>
+              <li onClick={this.toggleActiveClass}>Amour</li>
+            </div>
           </ul>
           <Datetime
             onChange={(e) => this.state.filterByYear(e._d)}

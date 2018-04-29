@@ -88,9 +88,13 @@ export default class Movies extends Component {
         {loading ? (
           <Loading loading={loading} />
         ) : (
-          <ul className="wrapper-all-movies">
-            {items}
-          </ul>
+          items.length > 0 ? (
+            <ul className="wrapper-all-movies">
+              {items}
+            </ul>
+          ) : (
+            <p className="error-message">Oops... Aucun film ne correspond à votre recherche</p>
+          )
         )}
       </div>
     );
