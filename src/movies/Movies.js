@@ -63,8 +63,6 @@ export default class Movies extends Component {
     const loading = this.state.loading;
     const data = this.state.data;
 
-    console.log(data);
-
     const items = data.map(item => {
 
       let title = item.title;
