@@ -3,7 +3,8 @@ import Moment from 'moment';
 
 import './movies.css';
 import Filter from '../filter/Filter';
-import Loading from '../loading/Loading';
+import Loading from '../loadings/Loading';
+import Loading2 from '../loadings/Loading2';
 
 export default class Movies extends Component {
 
@@ -13,6 +14,8 @@ export default class Movies extends Component {
     this.state = {
       loading: true,
       data: [],
+      counter: 1,
+      loadingInfiniteScroll: false,
     }
 
     this.sortByAlphabetical = this.sortByAlphabetical.bind(this);
@@ -21,6 +24,11 @@ export default class Movies extends Component {
 
   componentDidMount() {
     this.displayMovies();
+    window.addEventListener('scroll', this.infiniteScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.infiniteScroll, false);
   }
 
   sortByAlphabetical = () => {
@@ -28,9 +36,40 @@ export default class Movies extends Component {
     this.setState({data: alphabeticalOrder});
   }
 
+  filterByYear = (date) => {
+    const formatDate = Moment(date).format('YYYY');
+    console.log(formatDate);
+  }
+
+  infiniteScroll = () => {
+
+    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight)) {
+
+      this.setState(prevState => {
+        return {
+          counter: prevState.counter + 1,
+          loadingInfiniteScroll: true,
+        };
+      }, () => {
+        this.getMovies()
+          .then(res => {
+            this.setState((prevState) => {
+              return {data: prevState.data.concat(res)};
+            });
+          })
+          .then(res => {
+            this.setState({loadingInfiniteScroll: false});
+          })
+          .catch(err => console.log('Request failed', err));
+      });
+
+    }
+
+  }
+
   getMovies = () => {
     return (
-      fetch('https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc')
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc&page=${this.state.counter}`)
         .then(res => res.json())
         .then(res => res.results)
     );
@@ -43,17 +82,6 @@ export default class Movies extends Component {
           loading: false,
           data: res,
         });
-      })
-      .catch(err => console.log('Request failed', err));
-  }
-
-  filterByYear = (date) => {
-    this.getMovies()
-    .then(res => {
-        let data = res.filter(item => {
-          return item.release_date.split('-')[0] === Moment(date).format('YYYY');
-        });
-        this.setState({data: data});
       })
       .catch(err => console.log('Request failed', err));
   }
@@ -89,14 +117,19 @@ export default class Movies extends Component {
           <Loading loading={loading} />
         ) : (
           items.length > 0 ? (
-            <ul className="wrapper-all-movies">
-              {items}
-            </ul>
+            <div>
+              <ul className="wrapper-all-movies">
+                {items}
+              </ul>
+              <Loading2 loading={this.state.loadingInfiniteScroll} />
+            </div>
           ) : (
             <p className="error-message">Oops... Aucun film ne correspond à votre recherche</p>
           )
         )}
       </div>
     );
+    
   }
+
 }

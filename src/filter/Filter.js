@@ -76,13 +76,6 @@ export default class Filter extends Component {
             defaultValue="Année"
             closeOnSelect={true}
           />
-          {/* <div className="datepicker-wrapper">
-            <div className="arrow-up"></div>
-            <Datetime
-              dateFormat="YYYY"
-              defaultValue="Année"
-            />
-          </div> */}
         </div>
 
       </div>

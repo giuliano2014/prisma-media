@@ -18,6 +18,10 @@
           margin-bottom: 12px;
           border-radius: 12px;
         }
+        .movie-title,
+        .movie-date {
+           font-size: 0.8125rem;
+         }
         .movie-title {
           margin-bottom: 10px;
         }

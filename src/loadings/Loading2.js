@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import { ScaleLoader } from 'react-spinners';
+import { PulseLoader } from 'react-spinners';
 
 import './loading.css';
 
-export default class Loading extends Component {
+export default class Loading2 extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      loading: this.props.loading,
+      loading: this.props.loadingInfiniteScroll,
     }
   }
 
   render() {
     return (
       <div className="loading">
-        <ScaleLoader
+        <PulseLoader
           color={'#ffffff'}
-          width={3}
-          height={24}
-          radius={50}
           loading={this.state.loading}
         />
       </div>
     );
   }
+  
 }

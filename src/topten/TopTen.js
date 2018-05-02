@@ -5,7 +5,7 @@ import 'swiper/dist/css/swiper.min.css';
 import './topten.css';
 import SliderPreviousArrow from '../assets/svg/sliderpreviousarrow.svg';
 import SliderNextArrow from '../assets/svg/slidernextarrow.svg';
-import Loading from '../loading/Loading';
+import Loading from '../loadings/Loading';
 
 export default class TopTen extends Component {
 
@@ -35,7 +35,7 @@ export default class TopTen extends Component {
   }
 
   getTopTen = () => {
-    fetch('https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&certification=R&sort_by=vote_average.desc')
+    fetch("https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&certification=R&sort_by=vote_average.desc")
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -62,12 +62,12 @@ export default class TopTen extends Component {
     const items = data.map(item => {
 
       let title = item.title;
-      let formatTitle = title.length > 30 ? title.substr(0, 30) + '...' : title;
+      let formatTitle = title.length > 35 ? title.substr(0, 35) + '...' : title;
       let date = item.release_date.split('-')[0];
 
       return (
         <div key={item.id}>
-          <img src={`${"http://image.tmdb.org/t/p/w200"}${item.poster_path}`} alt={title} />
+          <img src={`http://image.tmdb.org/t/p/w200${item.poster_path}`} alt={title} />
           <h3 className="movie-title">{formatTitle}</h3>
           <p className="movie-date">{date}</p>
         </div>
