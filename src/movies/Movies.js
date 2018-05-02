@@ -38,7 +38,7 @@ export default class Movies extends Component {
 
   getMovies = () => {
     return (
-      fetch(`${"https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc&page="}${this.state.counter}`)
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc&page=${this.state.counter}`)
         .then(res => res.json())
         .then(res => res.results)
     );
@@ -67,35 +67,35 @@ export default class Movies extends Component {
   }
 
   infiniteScroll = () => {
+
     if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight)) {
-      this.setState((prevState) => {
+
+      this.setState(prevState => {
         return {
           counter: prevState.counter + 1,
           loadingInfiniteScroll: true,
         };
+      }, () => {
+        this.getMovies()
+          .then(res => {
+            this.setState((prevState) => {
+              return {data: prevState.data.concat(res)};
+            });
+          })
+          .then(res => {
+            this.setState({loadingInfiniteScroll: false});
+          })
+          .catch(err => console.log('Request failed', err));
       });
-      this.getMovies()
-        .then(res => {
-          this.setState((prevState) => {
-            return {data: prevState.data.concat(res)};
-          });
-        })
-        .then(res => {
-          this.setState({loadingInfiniteScroll: false});
-        })
-        .catch(err => console.log('Request failed', err));
+
     }
+
   }
 
   render() {
 
     const loading = this.state.loading;
     const data = this.state.data;
-
-    // console.log(data);
-    // console.log(this.state.counter);
-    console.log('loading : ' + loading);
-    console.log('loadingInfiniteScroll : ' + this.state.loadingInfiniteScroll);
 
     const items = data.map(item => {
 
