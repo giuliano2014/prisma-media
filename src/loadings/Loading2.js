@@ -23,4 +23,5 @@ export default class Loading2 extends Component {
       </div>
     );
   }
+  
 }
