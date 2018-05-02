@@ -5,7 +5,7 @@ import 'swiper/dist/css/swiper.min.css';
 import './topten.css';
 import SliderPreviousArrow from '../assets/svg/sliderpreviousarrow.svg';
 import SliderNextArrow from '../assets/svg/slidernextarrow.svg';
-import Loading from '../loading/Loading';
+import Loading from '../loadings/Loading';
 
 export default class TopTen extends Component {
 
