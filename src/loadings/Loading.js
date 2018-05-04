@@ -10,7 +10,7 @@ export default class Loading extends Component {
 
     this.state = {
       loading: this.props.loading,
-    }
+    };
   }
 
   render() {
@@ -26,5 +26,5 @@ export default class Loading extends Component {
       </div>
     );
   }
-  
+
 }

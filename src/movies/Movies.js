@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Moment from 'moment';
 
+import Config from '../config.js';
 import './movies.css';
 import Filter from '../filter/Filter';
 import Loading from '../loadings/Loading';
@@ -16,10 +17,7 @@ export default class Movies extends Component {
       data: [],
       counter: 1,
       loadingInfiniteScroll: false,
-    }
-
-    this.sortByAlphabetical = this.sortByAlphabetical.bind(this);
-    this.filterByYear = this.filterByYear.bind(this);
+    };
   }
 
   componentDidMount() {
@@ -69,7 +67,7 @@ export default class Movies extends Component {
 
   getMovies = () => {
     return (
-      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&sort_by=popularity.desc&page=${this.state.counter}`)
+      fetch(`${Config.apiUrl}?api_key=${Config.apiKey}&sort_by=popularity.desc&page=${this.state.counter}`)
         .then(res => res.json())
         .then(res => res.results)
     );
@@ -129,7 +127,7 @@ export default class Movies extends Component {
         )}
       </div>
     );
-    
+
   }
 
 }

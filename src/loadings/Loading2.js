@@ -10,7 +10,7 @@ export default class Loading2 extends Component {
 
     this.state = {
       loading: this.props.loadingInfiniteScroll,
-    }
+    };
   }
 
   render() {
@@ -23,5 +23,5 @@ export default class Loading2 extends Component {
       </div>
     );
   }
-  
+
 }
