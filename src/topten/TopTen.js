@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Swiper from 'react-id-swiper';
 import 'swiper/dist/css/swiper.min.css';
 
+import Config from '../config.js';
 import './topten.css';
 import SliderPreviousArrow from '../assets/svg/sliderpreviousarrow.svg';
 import SliderNextArrow from '../assets/svg/slidernextarrow.svg';
@@ -15,10 +16,8 @@ export default class TopTen extends Component {
     this.state = {
       loading: true,
       data: [],
-    }
+    };
 
-    this.goNext = this.goNext.bind(this);
-    this.goPrev = this.goPrev.bind(this);
     this.swiper = null;
   }
 
@@ -35,7 +34,7 @@ export default class TopTen extends Component {
   }
 
   getTopTen = () => {
-    fetch("https://api.themoviedb.org/3/discover/movie?api_key=0bc8f854ea8928cf462490e9efaa2f9c&certification=R&sort_by=vote_average.desc")
+    fetch(`${Config.apiUrl}?api_key=${Config.apiKey}&certification=R&sort_by=vote_average.desc`)
       .then(res => res.json())
       .then(res => {
         this.setState({

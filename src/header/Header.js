@@ -12,9 +12,6 @@ export default class Header extends Component {
     this.state = {
       value: '',
     };
-
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleFormSubmit = (event) => {
