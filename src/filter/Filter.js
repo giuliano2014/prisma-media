@@ -16,8 +16,6 @@ export default class Filter extends Component {
       active: false,
       filterByCurrentText: 'Genre',
     };
-
-    this.toggleActiveClass = this.toggleActiveClass.bind(this);
   }
 
   toggleActiveClass = (event) => {
